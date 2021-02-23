@@ -22,7 +22,7 @@ resource "aws_ecs_service" "web-api" {
     security_groups  = local.security_group_ids
     subnets          = var.subnets
     #assign_public_ip = true // false
-    assign_public_ip = false
+    assign_public_ip = true
   }
 
   load_balancer {
