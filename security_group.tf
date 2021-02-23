@@ -29,12 +29,12 @@ resource "aws_security_group" "alb_sg" {
   description = "ALB Security Group"
   vpc_id      = var.vpc_id
 
-  ingress {
-    from_port   = var.alb_port
-    to_port     = var.container_port
-    protocol    = "tcp"
-    cidr_blocks = [var.external_ip]
-  }
+  #ingress {
+  #  from_port   = var.alb_port
+  #  to_port     = var.container_port
+  #  protocol    = "tcp"
+  #  cidr_blocks = [var.external_ip]
+  #}
 
   ingress {
     from_port   = "80"
