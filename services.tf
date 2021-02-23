@@ -1,8 +1,8 @@
 locals {
   security_group_ids = [
     #aws_security_group.app_sg.id,
-    aws_security_group.alb_sg.id,
-    aws_security_group.ecs_sg.id,
+    #aws_security_group.alb_sg.id,
+    aws_security_group.ecs_sg.id
   ]
 }
 
