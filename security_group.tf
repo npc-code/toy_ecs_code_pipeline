@@ -121,12 +121,3 @@ resource "aws_security_group_rule" "alb_to_ecs" {
   source_security_group_id = aws_security_group.ecs_sg.id
 }
 
-#resource "aws_security_group_rule" "ecs_to_alb" {
-#  security_group_id        = "${aws_security_group.ecs_sg.id}"
-#  from_port                = var.container_port
-#  to_port                  = var.container_port
-#  protocol                 = "tcp"
-#  type                     = "ingress"
-#  source_security_group_id = "${aws_security_group.alb_sg.id}"
-#}
-

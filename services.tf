@@ -1,6 +1,6 @@
 locals {
   security_group_ids = [
-    aws_security_group.app_sg.id,
+    #aws_security_group.app_sg.id,
     aws_security_group.alb_sg.id,
     aws_security_group.ecs_sg.id,
   ]
@@ -21,7 +21,8 @@ resource "aws_ecs_service" "web-api" {
   network_configuration {
     security_groups  = local.security_group_ids
     subnets          = var.subnets
-    assign_public_ip = true // false
+    #assign_public_ip = true // false
+    assign_public_ip = false
   }
 
   load_balancer {
