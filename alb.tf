@@ -1,7 +1,8 @@
 resource "aws_alb" "app_alb" {
   name            = "${var.cluster_name}-alb"
-  subnets         = var.availability_zones
-  security_groups = [aws_security_group.alb_sg.id, aws_security_group.app_sg.id]
+  subnets         = var.subnets
+  #security_groups = [aws_security_group.alb_sg.id, aws_security_group.app_sg.id]
+  security_groups = [aws_security_group.alb_sg.id]
 
   tags = {
     Name        = "${var.cluster_name}-alb"

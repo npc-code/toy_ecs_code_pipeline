@@ -22,7 +22,7 @@ module "under_test" {
     alb_port = 80
     region = "us-east-1"
     ecr_repo_name = "test-ecr-repo"
-    availability_zones = ["test1", "test2"]
+    subnets = ["test1", "test2"]
     
     providers = {
         aws = aws.test

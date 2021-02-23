@@ -41,9 +41,9 @@ variable "region" {
     default = "us-east-2"
 }
 
-variable "availability_zones" {
+variable "subnets" {
   type        = list(string)
-  description = "The azs to use"
+  description = "subnets to use"
 }
 
 variable "health_check_path" {
