@@ -38,7 +38,7 @@ resource "aws_security_group" "alb_sg" {
 
   ingress {
     from_port   = "80"
-    to_port     = var.container_port
+    to_port     = "80"
     protocol    = "tcp"
     cidr_blocks = [var.external_ip]
   }
