@@ -46,6 +46,11 @@ variable "subnets" {
   description = "subnets to use"
 }
 
+variable "container_subnets" {
+    type = list(string)
+    description = "private subnets for containers"
+}
+
 variable "health_check_path" {
   description = ""
   default     = "/"

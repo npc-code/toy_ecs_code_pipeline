@@ -1,7 +1,5 @@
 locals {
   security_group_ids = [
-    #aws_security_group.app_sg.id,
-    #aws_security_group.alb_sg.id,
     aws_security_group.ecs_sg.id
   ]
 }
@@ -20,8 +18,7 @@ resource "aws_ecs_service" "web-api" {
   #should tweak this so we only use the correct security group, and make sure that our stuff goes to a private subnet
   network_configuration {
     security_groups  = local.security_group_ids
-    subnets          = var.subnets
-    #assign_public_ip = true // false
+    subnets = var.container_subnets
     assign_public_ip = true
   }
 

@@ -91,12 +91,14 @@ resource "aws_security_group" "ecs_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    from_port   = 8
-    to_port     = 0
-    protocol    = "icmp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  #TODO
+  #not needed?  commenting out
+  #ingress {
+  #  from_port   = 8
+  #  to_port     = 0
+  #  protocol    = "icmp"
+  #  cidr_blocks = ["0.0.0.0/0"]
+  #}
   
   ingress {
       from_port = 5000
