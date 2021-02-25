@@ -23,6 +23,7 @@ module "under_test" {
     region = "us-east-1"
     ecr_repo_name = "test-ecr-repo"
     subnets = ["test1", "test2"]
+    container_subnets = ["ctest1", "ctest2"]
     
     providers = {
         aws = aws.test
