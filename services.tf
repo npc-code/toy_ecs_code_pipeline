@@ -18,7 +18,8 @@ resource "aws_ecs_service" "web-api" {
   #should tweak this so we only use the correct security group, and make sure that our stuff goes to a private subnet
   network_configuration {
     security_groups  = local.security_group_ids
-    subnets          = var.subnets
+    #subnets          = var.subnets
+    subnets = var.container_subnets
     #assign_public_ip = true // false
     assign_public_ip = true
   }
