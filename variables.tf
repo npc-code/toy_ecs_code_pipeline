@@ -63,3 +63,11 @@ variable "desired_tasks" {
 variable "ecr_repo_name" {
     description = "Name of the ecr repo to use"
 }
+
+variable "zone_id" {
+    description = "zone id for the route53 hosted zone we will use for our DNS"
+}
+
+variable "domain_name" {
+    description = "domain name to be used for the alb"
+}

@@ -24,6 +24,8 @@ module "under_test" {
     ecr_repo_name = "test-ecr-repo"
     subnets = ["test1", "test2"]
     container_subnets = ["ctest1", "ctest2"]
+    zone_id = "test1"
+    domain_name = "test1"
     
     providers = {
         aws = aws.test

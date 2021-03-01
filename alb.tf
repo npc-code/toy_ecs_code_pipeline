@@ -1,7 +1,6 @@
 resource "aws_alb" "app_alb" {
   name            = "${var.cluster_name}-alb"
   subnets         = var.subnets
-  #security_groups = [aws_security_group.alb_sg.id, aws_security_group.app_sg.id]
   security_groups = [aws_security_group.alb_sg.id]
 
   tags = {
@@ -9,6 +8,55 @@ resource "aws_alb" "app_alb" {
     Environment = var.cluster_name
   }
 }
+
+#TODO
+resource "aws_route53_record" "alb_endpoint" {
+  zone_id = var.zone_id
+  name    = var.domain_name
+  type    = "A"
+
+  alias {
+    name                   = aws_alb.app_alb.dns_name
+    zone_id                = aws_alb.app_alb.zone_id
+    evaluate_target_health = true
+  }
+}
+
+#going to add in all the route53 stuff here, including ACM stuff.
+#resource "aws_acm_certificate" "cert_request" {
+#  domain_name               = var.domain_name
+#  validation_method         = "DNS"
+
+#  tags = {
+#    Name : var.domain_name
+#  }
+
+#  lifecycle {
+#    create_before_destroy = true
+#  }
+#}
+
+#resource "aws_route53_record" "validation_record" {
+#  for_each = {
+#    for dvo in aws_acm_certificate.cert_request.domain_validation_options : dvo.domain_name => {
+#      name   = dvo.resource_record_name
+#      record = dvo.resource_record_value
+#      type   = dvo.resource_record_type
+#    }
+#  }
+
+#  allow_overwrite = true
+#  name            = each.value.name
+#  records         = [each.value.record]
+#  ttl             = var.ttl
+#  type            = each.value.type
+#  zone_id         = aws_route53_zone.main_zone.zone_id
+#}
+
+#resource "aws_acm_certificate_validation" "certificate_validation" {
+#  certificate_arn         = aws_acm_certificate.cert_request.arn
+#  validation_record_fqdns = [for record in aws_route53_record.validation_record : record.fqdn]
+#}
 
 resource "aws_alb_target_group" "api_target_group" {
   name_prefix = substr(var.cluster_name, 0, 6)
