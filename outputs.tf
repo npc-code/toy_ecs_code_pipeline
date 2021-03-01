@@ -9,3 +9,7 @@ output "ecr_webapp_repository_name" {
 output "alb_endpoint" {
     value = aws_alb.app_alb.dns_name
 }
+
+output "url" {
+    value = aws_route53_record.alb_endpoint.name
+}
