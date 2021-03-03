@@ -26,6 +26,7 @@ module "under_test" {
     container_subnets = ["ctest1", "ctest2"]
     zone_id = "test1"
     domain_name = "test1"
+    use_cert = false
     
     providers = {
         aws = aws.test

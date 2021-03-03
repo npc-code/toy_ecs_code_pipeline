@@ -71,3 +71,8 @@ variable "zone_id" {
 variable "domain_name" {
     description = "domain name to be used for the alb"
 }
+
+variable "use_cert" {
+    type = bool
+    description = "true/false as to our use of a certificate"
+}
