@@ -11,5 +11,5 @@ output "alb_endpoint" {
 }
 
 output "url" {
-    value = aws_route53_record.alb_endpoint.name
+    value = aws_route53_record.alb_endpoint[0].name
 }
