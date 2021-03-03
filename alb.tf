@@ -80,6 +80,7 @@ resource "aws_alb_target_group" "api_target_group" {
 
 resource "aws_alb_listener" "web_app" {
   #count             = local.can_ssl ? 0 : 1
+  count = var.use_cert ? 0 : 1
   load_balancer_arn = aws_alb.app_alb.arn
   port              = var.alb_port
   protocol          = "HTTP"
