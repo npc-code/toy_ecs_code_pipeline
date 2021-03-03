@@ -56,7 +56,7 @@ resource "aws_security_group_rule" "https" {
   protocol          = "tcp"
   cidr_blocks       = [var.external_ip]
   security_group_id = aws_security_group.alb_sg.id
-  depends_on = [aws_security_group.alb_sg]
+  #depends_on = [aws_security_group.alb_sg]
 }
 
 # ECS Cluster Security Group
