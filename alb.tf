@@ -119,6 +119,8 @@ resource "aws_alb_listener" "web_app_https" {
   load_balancer_arn = aws_alb.app_alb.arn
   port              = "443"
   protocol          = "HTTPS"
+  certificate_arn = aws_acm_certificate.cert_request.arn
+  ssl_policy = "ELBSecurityPolicy-2016-08"
   depends_on        = [aws_alb_target_group.api_target_group]
 
   lifecycle {
