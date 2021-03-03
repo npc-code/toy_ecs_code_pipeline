@@ -97,6 +97,7 @@ resource "aws_alb_listener" "web_app" {
 
 resource "aws_alb_listener" "web_app_http" {
   #count = local.is_only_http ? 1 : 0
+  count = var.use_cert ? 0 : 1
 
   load_balancer_arn = aws_alb.app_alb.arn
   port              = "80"
@@ -113,8 +114,24 @@ resource "aws_alb_listener" "web_app_http" {
   }
 }
 
+resource "aws_alb_listener" "http_forward" {
+  count = var.use_cert ? 1 : 0
+  load_balancer_arn = aws_alb.app_alb.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
 resource "aws_alb_listener" "web_app_https" {
-  #count = local.is_only_http ? 1 : 0
   count = var.use_cert ? 1 : 0
   load_balancer_arn = aws_alb.app_alb.arn
   port              = "443"
