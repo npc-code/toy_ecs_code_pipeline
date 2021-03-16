@@ -10,6 +10,7 @@ resource "aws_ecs_service" "web-api" {
   cluster         = aws_ecs_cluster.cluster.id
   launch_type     = "FARGATE"
   desired_count   = var.desired_tasks
+  health_check_grace_period_seconds = 600
 
   //  deployment_controller {
   //    type = "CODE_DEPLOY"
