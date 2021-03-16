@@ -54,10 +54,6 @@ resource "aws_route53_record" "validation_record" {
   zone_id         = var.zone_id
 }
 
-#resource "aws_acm_certificate_validation" "certificate_validation" {
-#  certificate_arn         = aws_acm_certificate.cert_request.arn
-#  validation_record_fqdns = [for record in aws_route53_record.validation_record : record.fqdn]
-#}
 
 resource "aws_alb_target_group" "api_target_group" {
   name_prefix = substr(var.cluster_name, 0, 6)
@@ -73,6 +69,7 @@ resource "aws_alb_target_group" "api_target_group" {
   health_check {
     path = var.health_check_path
     port = var.container_port
+    timeout = 120
   }
 
   depends_on = [aws_alb.app_alb]
