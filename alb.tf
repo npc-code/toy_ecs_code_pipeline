@@ -69,7 +69,7 @@ resource "aws_alb_target_group" "api_target_group" {
   health_check {
     path = var.health_check_path
     port = var.container_port
-    timeout = 120
+    timeout = 29
   }
 
   depends_on = [aws_alb.app_alb]
