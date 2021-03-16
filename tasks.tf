@@ -9,7 +9,6 @@ data "template_file" "api_task" {
     desired_task_cpu    = var.desired_task_cpu
     desired_task_memory = var.desired_task_memory
     region = var.region
-    # environment_variables_str = "${replace(join(",",formatlist("{\"name\":%q,\"value\":%q}",keys(var.environment_variables),values(var.environment_variables))), "rds_endpoint", var.db_host_endpoint)}"
     environment_variables_str = join(
       ",",
       formatlist(
